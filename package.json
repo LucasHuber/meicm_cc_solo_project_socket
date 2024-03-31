@@ -1,0 +1,10 @@
+{
+    "name": "socket-meicm_cloud_computing_project",
+    "version": "0.0.1",
+    "description": "MEICM Cloud Computing Project Socket",
+    "dependencies": {
+        "express": "^4.19.1",
+        "mongodb": "^6.5.0",
+        "socket.io": "^4.7.5"
+    }
+}
