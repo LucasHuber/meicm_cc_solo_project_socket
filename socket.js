@@ -9,7 +9,7 @@ var uri = process.env.DATABASE_URI || 'localhost';
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://meicm-cc-solo-project-frontend-pjxah7gudq-uc.a.run.app:3000",
         allowedHeaders: ["my-custom-header"],
         credentials: true
     }
