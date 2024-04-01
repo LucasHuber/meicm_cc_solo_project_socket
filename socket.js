@@ -21,10 +21,7 @@ const io = new Server(server, {
 var client;
 if (uri.startsWith("mongodb+srv")) {
     console.log("Option 1 choosen");
-    client = new MongoClient(uri , {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+    client = new MongoClient(uri);
     
     const test_collection = client.db('test_database').collection("test_message");
     const obj = { "date": new Date(), "text": "Test"};
