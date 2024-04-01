@@ -19,12 +19,14 @@ const io = new Server(server, {
 });
 
 var client;
-if (uri.startsWith("mongodb+srv://")) {
+if (uri.startsWith("mongodb+srv")) {
+    console.log("Option 1 choosen");
     client = new MongoClient(uri , {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
 } else {
+    console.log("Option 2 choosen");
     client = new MongoClient(`mongodb://${uri}:27017`);
 }
 
