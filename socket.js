@@ -25,6 +25,11 @@ if (uri.startsWith("mongodb+srv")) {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
+    
+    const test_collection = client.db('test_database').collection("test_message");
+    const obj = { "date": new Date(), "text": "Test"};
+    test_collection.insertOne(obj);
+    console.log("Test insert worked");
 } else {
     console.log("Option 2 choosen");
     client = new MongoClient(`mongodb://${uri}:27017`);
@@ -34,11 +39,6 @@ const message_collection = client.db('message_database').collection("messages");
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    
-    (async() => {
-        var test = await message_collection.find().toArray();
-        console.log(test);
-    });
     
     socket.on("chat message", (msg) => {
         io.emit("chat message", msg);
