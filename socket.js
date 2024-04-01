@@ -22,11 +22,15 @@ var client;
 if (uri.startsWith("mongodb+srv")) {
     console.log("Option 1 choosen");
     client = new MongoClient(uri);
+
+    client.on('connectionCreated', () => {
+        console.log('New connection created successfully.');
+    });
     
     const test_collection = client.db('test_database').collection("test_message");
     const obj = { "date": new Date(), "text": "Test"};
     test_collection.insertOne(obj);
-    console.log("Test insert worked");
+    console.log("Test insert done");
 } else {
     console.log("Option 2 choosen");
     client = new MongoClient(`mongodb://${uri}:27017`);
