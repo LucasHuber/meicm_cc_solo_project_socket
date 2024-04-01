@@ -7,9 +7,12 @@ const app = express();
 const server = createServer(app);
 var uri = process.env.DATABASE_URI || 'localhost';
 
+console.log(process.env.DATABASE_URI);
+console.log(process.env.FRONTEND_URI)
+
 const io = new Server(server, {
     cors: {
-        origin: "https://meicm-cc-solo-project-frontend-pjxah7gudq-uc.a.run.app",
+        origin: process.env.FRONTEND_URI,
         allowedHeaders: ["my-custom-header"],
         credentials: true
     }
