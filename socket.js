@@ -15,7 +15,16 @@ const io = new Server(server, {
     }
 });
 
-const client = new MongoClient(`mongodb://${uri}:27017`);
+var client;
+if (uri.startsWith("mongodb+srv://")) {
+    client = new MongoClient(uri , {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+} else {
+    client = new MongoClient(`mongodb://${uri}:27017`);
+}
+
 const message_collection = client.db('message_database').collection("messages");
 
 io.on('connection', (socket) => {
