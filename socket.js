@@ -19,21 +19,12 @@ const io = new Server(server, {
 });
 
 var client;
-if (uri.startsWith("mongodb+srv")) {
-    console.log("Option 1 choosen");
-    // client = new MongoClient(uri);
-    client = new MongoClient("mongodb+srv://2233079:9VB8uer4UheAvYJu@meicm-cc-solo-project-d.3umcejr.mongodb.net/?retryWrites=true&w=majority&appName=meicm-cc-solo-project-database");
-
-    client.on('connectionCreated', () => {
-        console.log('New connection created successfully.');
-    });
-    
-    const test_collection = client.db('test_database').collection("test_message");
-    const obj = { "date": new Date(), "text": "Test"};
-    test_collection.insertOne(obj);
-    console.log("Test insert done");
+if (uri.startsWith("mongodb+srv://")) {
+    client = new MongoClient(uri , {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 } else {
-    console.log("Option 2 choosen");
     client = new MongoClient(`mongodb://${uri}:27017`);
 }
 
